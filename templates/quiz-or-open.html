@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ translation['Question'] }} № {{ id }}</h2>
+<p>{{ question['text'] }}</p>
+<form action="/poll" method="post">
+    {% for choice in question['choices'] %}
+    {% if not loop.last %}
+    <div class="radio">
+        <label><input type="radio" name="answer">{{ choice }}</label>
+    </div>
+    {% endif %}
+    {% endfor %}
+    <div class="radio">
+        <label><input type="radio" name="answer">{{ question['choices'][-1] }} <input type="text" name="answer"></label>
+    </div>
+    <input type="hidden" name="question-id" id="question-id" value="{{ id }}">
+    <input type="submit" class="btn btn-primary" value="{{ translation['Next'] }}">
+</form>
+{% endblock %}

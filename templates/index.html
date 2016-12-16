@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Запитання № 1</h2>
+<p>Оберіть мову заповнення анкети:</p>
+<form action="/poll" method="post">
+    <div class="radio">
+        <label><input type="radio"  name="lang" value="uk">Українська</label>
+    </div>
+    <div class="radio">
+        <label><input type="radio"  name="lang" value="ru">Русский</label>
+    </div>
+    <input type="hidden" name="question-id" id="question-id" value="0">
+    <input type="submit" class="btn btn-primary" value="Далі">
+</form>
+{% endblock %}
