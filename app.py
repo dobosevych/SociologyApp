@@ -1,8 +1,9 @@
-from flask import Flask, render_template, session, request, redirect, url_for, escape
+from flask import Flask, render_template, session, request, redirect
+import os
 import json
 
 app = Flask(__name__)
-
+app.secret_key = 'f04c8f9e2328040b2716dd6a294fc122b8c478b524688dbd'
 
 @app.route('/')
 def index():
@@ -27,7 +28,9 @@ def poll():
 
     id = int(session['question-id'])
 
-    with open('questions/' + session['lang'] + '.json', encoding='UTF-8') as data:
+    path_to_questions = os.path.join(os.path.dirname(__file__), 'questions/' + session['lang'] + '.json')
+
+    with open(path_to_questions, encoding='UTF-8') as data:
         questions = json.load(data)
 
     if 'next' not in questions['questions'][id]:
@@ -47,5 +50,4 @@ def poll():
         return 'Error 404'
 
 if __name__ == '__main__':
-    app.secret_key = 'f04c8f9e2328040b2716dd6a294fc122b8c478b524688dbd'
-    app.run(debug=True)
+    app.run(host="0.0.0.0", debug=True)
