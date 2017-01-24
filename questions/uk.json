@@ -1,6 +1,6 @@
 {
   "lang": "uk",
-  "translation": {"Next": "Далі", "Question": "Запитання"},
+  "translation": {"Next": "Далі", "Question": "Запитання", "Please enter the answer": "Будь ласка введіть відповідь"},
   "questions": [
     {
       "text": "Оберіть мову заповнення анкети:",
