@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Запитання № {{ q_num }}</h2>
+<p>{{ form.question.label }}</p>
+<form action="/new-poll" method="post">
+    <div class="form-group {% if form.question.errors %} has-error {% endif %}">
+        {{ form.csrf_token }}
+        {{ form.question(class_='form-control')|safe }}
+        {% if form.question.errors %}
+        <p class="help-block">
+            {% for error in form.question.errors %}
+            {{ translation[error] }}
+            {% endfor %}
+        </p>
+        {% endif %}
+    </div>
+    <input type="hidden" name="question-id" id="question-id" value="{{ q_num }}">
+    <input type="submit" class="btn btn-primary" value="{{ translation['Next'] }}">
+</form>
+{% endblock %}
